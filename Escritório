@@ -1,0 +1,22 @@
+Create database Escritorio;
+Use Escritorio;
+
+Create Table Funcionario(
+Nome char(60),
+Endereco integer(60),
+TempoDeCasa int(10),
+
+Primary Key(Funcionario)
+);
+
+Create Table Escritorio(
+Endereco integer(60),
+Estado char(10),
+Fone int(20),
+
+primary key(Escritorio)
+);
+
+Insert into Funcionario(Nome, Endereco, Salario, TempoDeCasa) values ('Marcelo', 'Rua Professor Antonio Seixas Leite Ribeiro,15-Santo Andre, São Paulo-SP');
+Insert into Funcionario(Nome, Endereco, Salario, TempoDeCasa) values ('Luciana', 'Rua Professor Antonio Seixas Leite Ribeiro,15-Santo Andre, São Paulo-SP');
+Insert into Funcionario(Nome, Endereco, Salario, TempoDeCasa) values ('Felipe', 'Rua Professor Antonio Seixas Leite Ribeiro,15-Santo Andre, São Paulo-SP');
