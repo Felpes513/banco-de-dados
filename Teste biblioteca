@@ -1,0 +1,66 @@
+Drop Database teste;
+Create Database teste;
+use teste;
+
+CREATE TABLE EDITORA(
+Nome char(60),
+Endereco VARCHAR(50),
+Fone VARCHAR(30),
+
+PRIMARY KEY(Nome)
+);
+
+CREATE TABLE USUARIO(
+NoCartao integer,
+Nome text,
+Endereco text,
+Fone text,
+PRIMARY KEY(NoCartao)
+);
+
+CREATE TABLE FILIAL_BIBLIOTECA(
+IdFilial integer,
+NomeFilial text,
+Endereco text,
+PRIMARY KEY(IdFilial)
+);
+
+CREATE TABLE LIVRO(
+IdLivro integer,
+Titulo text,
+NomeEditora char(60),
+
+PRIMARY KEY(IdLivro),
+FOREIGN KEY (NomeEditora) REFERENCES EDITORA(Nome)
+);
+
+CREATE TABLE AUTORES_LIVRO(
+IdLivro integer,
+NomeAutor char(100),
+PRIMARY KEY(IdLivro, NomeAutor),
+FOREIGN KEY (IdLivro) REFERENCES LIVRO(IdLivro)
+);
+
+CREATE TABLE COPIAS_LIVRO(
+IdLivro integer,
+IdFilial integer,
+No_De_Copias integer,
+PRIMARY KEY(IdLivro, IdFilial),
+FOREIGN KEY (IdLivro) REFERENCES LIVRO(IdLivro),
+FOREIGN KEY (IdFilial) REFERENCES FILIAL_BIBLIOTECA(IdFilial)
+);
+
+CREATE TABLE LIVROS_EMPRESTADOS(
+IdLivro integer,
+IdFilial integer,
+NoCartao integer,
+DataSaida date,
+DataDevolucao date,
+PRIMARY KEY(IdLivro, IdFilial, NoCartao),
+FOREIGN KEY (IdLivro) REFERENCES LIVRO(IdLivro),
+FOREIGN KEY (IdFilial) REFERENCES FILIAL_BIBLIOTECA(IdFilial),
+FOREIGN KEY (NoCartao) REFERENCES USUARIO(NoCartao)
+);
+
+INSERT INTO EDITORA (Nome, Endereco, Fone) VALUES ("Elsevier,(11)5105-8555,Rua
+Quintana, 753 - Brooklin Novo, São Paulo - SP,")
