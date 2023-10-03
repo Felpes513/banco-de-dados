@@ -1,0 +1,46 @@
+drop table xitem
+drop table xpedido
+drop table xstatus
+drop table xcliente
+drop table xproduto
+
+-- TABELA AUXILIAR
+
+CREATE TABLE Xstatus(
+    idStatus INT NOT NULL IDENTITY PRIMARY KEY,
+    descricao varchar(50),
+);
+
+-- TABELAS PRINCIPAIS
+
+CREATE TABLE Xcliente (
+    idCliente int NOT NULL identity PRIMARY KEY,
+    CPF VARCHAR(11) ,
+    nome VARCHAR(45),
+    dataNasc DATE,
+);
+CREATE TABLE Xpedido (
+    idPedido  INT not null IDENTITY PRIMARY KEY,
+    idStatus  INT NOT NULL,
+    idCliente INT not null,
+    valor DECIMAL(10,2),
+    data  DATE,
+    FOREIGN KEY (idStatus)  REFERENCES Xstatus (idStatus),
+    FOREIGN KEY (idCliente) REFERENCES Xcliente(idCliente),
+);
+CREATE TABLE Xproduto (
+    idProduto INT NOT NULL IDENTITY PRIMARY KEY,
+    descricao VARCHAR(45),
+    valor DECIMAL(10,2),
+);
+
+-- ITENS = CARRINHO
+CREATE TABLE Xitem (
+    idItem    INT NOT NULL IDENTITY PRIMARY KEY,
+    idPedido  INT NOT NULL,
+    idProduto INT NOT NULL,
+    quantidade INT,
+    valor DECIMAL(10,2),
+    FOREIGN KEY (idPedido)  REFERENCES Xpedido(idPedido),
+    FOREIGN KEY (idProduto) REFERENCES Xproduto(idProduto)
+);
