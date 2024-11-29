@@ -44,15 +44,12 @@ alter table carro change ano anoFabricacao int not null;
 
 -- Como utlizar o Select
 
-select * from cliente
-where idade = 18;
+select * from cliente;
 
 /* Este exemplo usa o banco World
 A regra do select é select (nome do dado Ex: ID) + from (nome da tabela Ex: city)
 Segue o exemplo
 */
+
 use world;
-
-select ID from city;
-
-drop database gestao_venda1;
+select * from city;
